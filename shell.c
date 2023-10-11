@@ -6,7 +6,7 @@ int main(void)
 	char *input = NULL;
 	char **argv;
 	size_t len = 0, len2;
-	int i;
+/*	int i;*/
 
 	while (1)
 	{
@@ -20,12 +20,15 @@ int main(void)
 				free(input);
 			break;
 		}
-		printf("User Input ==> %s\n", input);
+	/*	printf("User Input ==> %s\n", input);*/
 		argv = _argv(input);
 		argv[0] = _strcat("/bin/", argv[0]);
-		for (i = 0 ; argv[i] ; i++)
+	/*	for (i = 0 ; argv[i] ; i++)
 			printf("ch[%d] ==> %s\n", i, argv[i]);
-		printf("----------------------------\n");
+		printf("ch[%d] ==> %s\n", i, argv[i]);*/
+		if (execve(argv[0], argv, NULL) == -1)
+				perror("Error\n");
+	/*	printf("----------------------------\n");*/
 	}
 	return (0);
 }
