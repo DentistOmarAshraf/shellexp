@@ -22,6 +22,7 @@ int main(void)
 		}
 		printf("User Input ==> %s\n", input);
 		argv = _argv(input);
+		argv[0] = _strcat("/bin/", argv[0]);
 		for (i = 0 ; argv[i] ; i++)
 			printf("ch[%d] ==> %s\n", i, argv[i]);
 		printf("----------------------------\n");

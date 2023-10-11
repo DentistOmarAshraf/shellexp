@@ -49,3 +49,20 @@ char **_argv(char *s)
 	ret[i] = NULL;
 	return (ret);
 }
+char *_strcat(char *s1, char *s2)
+{
+	char *all;
+	int len1, len2, i, j;
+
+	len1 = _strlen(s1);
+	len2 = _strlen(s2);
+	all = malloc(sizeof(char) * (len1 + len2 + 1));
+	if (!all)
+		exit(98);
+	for (i = 0 ; s1[i] ; i++)
+		all[i] = s1[i];
+	for (j = 0 ; s2[j] ; j++)
+		all[i++] = s2[j];
+	all[i] = '\0';
+	return (all);
+}

@@ -11,5 +11,6 @@ int _strcmp(char *, char *);
 int _strlen(char *);
 char **_argv(char *);
 int count_words(char *);
+char *_strcat(char *, char *);
 
 #endif
