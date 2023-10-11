@@ -3,7 +3,7 @@
 int main(void)
 {
 	char *prom = "$ ";
-	char *input = NULL;
+	char *input = NULL; char *dir;
 	char **argv;
 	size_t len = 0, len2;
 /*	int i;*/
@@ -22,12 +22,12 @@ int main(void)
 		}
 	/*	printf("User Input ==> %s\n", input);*/
 		argv = _argv(input);
-		argv[0] = _strcat("/bin/", argv[0]);
+		dir = _strcat("/bin/", argv[0]);
 	/*	for (i = 0 ; argv[i] ; i++)
 			printf("ch[%d] ==> %s\n", i, argv[i]);
 		printf("ch[%d] ==> %s\n", i, argv[i]);*/
-		if (execve(argv[0], argv, NULL) == -1)
-				perror("Error\n");
+		if (execve(dir, argv, NULL) == -1)
+				perror("Error");
 	/*	printf("----------------------------\n");*/
 	}
 	return (0);
