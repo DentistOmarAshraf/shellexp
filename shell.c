@@ -6,19 +6,18 @@
 
 int main(void)
 {
-	char *prom = "$ ", *dir;
-	char *input = NULL;
+	char *prom = "$ ", *dir, *input = NULL;
 	char **argv;
 	size_t len = 0;
-	int id, status, len2;
+	int id, status, len2, glchk;
 
 	while (1)
 	{
 		write(1, prom, _strlen(prom));
-		getline(&input, &len, stdin);
+		glchk = getline(&input, &len, stdin);
 		len2 = _strlen(input);
 		input[len2 - 1] = '\0';
-		if (_strcmp(input, "exit"))
+		if (_strcmp(input, "exit") || glchk < 0)
 		{
 			if (input)
 				free(input);
