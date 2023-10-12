@@ -20,15 +20,10 @@ int main(void)
 				free(input);
 			break;
 		}
-	/*	printf("User Input ==> %s\n", input);*/
 		argv = _argv(input);
 		dir = _strcat("/bin/", argv[0]);
-	/*	for (i = 0 ; argv[i] ; i++)
-			printf("ch[%d] ==> %s\n", i, argv[i]);
-		printf("ch[%d] ==> %s\n", i, argv[i]);*/
 		if (execve(dir, argv, NULL) == -1)
 				perror("Error");
-	/*	printf("----------------------------\n");*/
 	}
 	return (0);
 }
