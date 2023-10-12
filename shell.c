@@ -6,7 +6,7 @@ int main(void)
 	char *input = NULL; char *dir;
 	char **argv;
 	size_t len = 0, len2;
-/*	int i;*/
+	int id, status;
 
 	while (1)
 	{
@@ -22,8 +22,20 @@ int main(void)
 		}
 		argv = _argv(input);
 		dir = _strcat("/bin/", argv[0]);
-		if (execve(dir, argv, NULL) == -1)
-				perror("Error");
+		id = fork();
+		if (id == 0)
+			if (execve(dir, argv, NULL) == -1)
+			{
+					perror("Error");
+					return (1);
+			}
+		if (id < 0)
+		{
+			perror("Error: ");
+			return (1);
+		}
+		else
+			waitpid(id, &status, 0);
 	}
 	return (0);
 }
