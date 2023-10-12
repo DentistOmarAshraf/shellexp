@@ -26,12 +26,12 @@ int main(void)
 		if (id == 0)
 			if (execve(dir, argv, NULL) == -1)
 			{
-					perror("Error");
+					perror(argv[0]);
 					return (1);
 			}
 		if (id < 0)
 		{
-			perror("Error: ");
+			perror("forking error\n");
 			return (1);
 		}
 		else
