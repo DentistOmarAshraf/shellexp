@@ -16,39 +16,61 @@ int _strcmp(char *s1, char *s2)
 	return (_strcmp(s1 + 1, s2 + 1));
 }
 
-int count_words(char *s)
+int count_words(char *str)
 {
-	int i, count;
+	int i, spc;
 
-	for (i = 0 ; s[i] ; i++)
-		if (i && s[i] == ' ' && s[i - 1] != ' ')
-			count++;
-	if (s[i] == '\0' && s[i] != ' ')
-		count++;
-	return (count);
-}
-
-char **_argv(char *s)
-{
-	int i, count;
-	char **ret;
-
-	count = count_words(s);
-	ret = malloc(sizeof(char *) * (count));
-	if (!ret)
-		exit(98);
-	for (i = 0 ; i < count ; i++)
+	spc = 0;
+	for (i = 0 ; str[i] ; i++)
 	{
-		if (!i)
-		{
-			ret[i] = strtok(s, " ");
-			continue;
-		}
-		ret[i] = strtok(NULL, " ");
+		if (i && str[i] == ' ' && str[i - 1] != ' ')
+			spc++;
 	}
-	ret[i] = NULL;
-	return (ret);
+	if (str[i] == '\0' && str[i - 1] != ' ')
+		spc++;
+	return (spc);
 }
+
+char **_argv(char *str)
+{
+	char **new;
+	int words, i, j , count, count2;
+
+	if (str == NULL || count_words(str) == 0 || _strlen(str) == 0)
+		return (NULL);
+	words = count_words(str);
+	new = malloc(sizeof(char *) * (words + 1));
+	if (new == NULL)
+		return (NULL);
+
+	count = 0;
+	count2 = 0;
+	for (i = 0 ; i < words ; i++)
+	{
+		while (str[count] == ' ')
+			count++;
+		for (j = 0 ; str[count] != ' ' && str[count]; j++, count++)
+			;
+		new[i] = malloc(sizeof(char) * (j + 1));
+			if (!new)
+			{
+				for (i = 0 ; i < words ; i++)
+					free(new[i]);
+				free(new);
+				return (NULL);
+			}
+		while (str[count2] == ' ')
+			count2++;
+		for (j = 0 ; str[count2] != ' ' && str[count2] ; j++, count2++)
+			new[i][j] = str[count2];
+		new[i][j] = '\0';
+	}
+	new[i] = NULL;
+	return (new);
+}
+
+
+
 char *_strcat(char *s1, char *s2)
 {
 	char *all;

@@ -6,7 +6,7 @@
 
 int main(void)
 {
-	char *prom = "$ ", *dir, *input = NULL;
+	char *prom = "$ ", /* *dir,*/ *input = NULL;
 	char **argv;
 	size_t len = 0;
 	int id, status, len2, glchk;
@@ -15,29 +15,35 @@ int main(void)
 	{
 		write(1, prom, _strlen(prom));
 		glchk = getline(&input, &len, stdin);
+		if (_strcmp(input, "\n"))
+			continue;
 		len2 = _strlen(input);
 		input[len2 - 1] = '\0';
 		if (_strcmp(input, "exit") || glchk < 0)
 		{
 			if (input)
 				free(input);
-			break;
-		}
+			break;	}
 		argv = _argv(input);
-		dir = _strcat("/bin/", argv[0]);
 		id = fork();
 		if (id == 0)
 		{
-			if (execve(dir, argv, NULL) == -1)
+			if (execve(argv[0], argv, NULL) == -1)
 			{
 				perror(argv[0]);
-				return (1);
-			}
+				free_grid(argv);
+				free(input);
+				return (1);	}
+			if (input)
+				free(input);
+			free_grid(argv);
 		}
-		else if (id < 0)
-			perror("forking error\n");
 		else
-			waitpid(id, &status, 0);
+		{
+			if (argv)
+				free_grid(argv);
+			waitpid(id, &status, 0);	}
+
 	}
 	return (0);
 }
