@@ -34,16 +34,13 @@ int main(void)
 				free_grid(argv);
 				free(input);
 				return (1);	}
+			free_grid(argv);
 			if (input)
 				free(input);
-			free_grid(argv);
-		}
-		else
+			return (0);	}
 		{
 			if (argv)
 				free_grid(argv);
-			waitpid(id, &status, 0);	}
-
-	}
+			waitpid(id, &status, 0);	}	}
 	return (0);
 }
