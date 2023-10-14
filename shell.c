@@ -21,26 +21,23 @@ int main(void)
 		input[len2 - 1] = '\0';
 		if (_strcmp(input, "exit") || glchk < 0)
 		{
-			if (input)
-				free(input);
+			free(input);
 			break;	}
 		argv = _argv(input);
 		id = fork();
 		if (id == 0)
 		{
 			if (execve(argv[0], argv, NULL) == -1)
-			{
 				perror(argv[0]);
-				free_grid(argv);
-				free(input);
-				return (1);	}
 			free_grid(argv);
-			if (input)
-				free(input);
-			return (0);	}
+			free_ptr(input);
+			return (0);
+		}
+		else
 		{
-			if (argv)
-				free_grid(argv);
-			waitpid(id, &status, 0);	}	}
+			wait(&status);
+			free_grid(argv);
+		}
+	}
 	return (0);
 }
