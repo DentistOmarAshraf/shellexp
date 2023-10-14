@@ -14,5 +14,5 @@ char **_argv(char *);
 int count_words(char *);
 char *_strcat(char *, char *);
 void free_grid(char **);
-void free_ptr(char *);
+void free_ptr(char **);
 #endif
