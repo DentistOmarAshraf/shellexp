@@ -11,9 +11,9 @@ int main(void)
 	size_t len = 0;
 	int id, status, len2/*, glchk*/;
 
-	while (1)
+	while (true)
 	{
-		write(1, prom, _strlen(prom));
+		write(STDOUT_FILENO, prom, _strlen(prom));
 		/*ctrl + d  && exit work same but still there is some issue here*/
 		if (getline(&input, &len, stdin) == -1 || _strcmp(input, "exit\n"))
 		{

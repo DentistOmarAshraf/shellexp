@@ -1,12 +1,23 @@
 #include "main.h"
-
+/**
+ * _strlen - to messure string length
+ * @s: pointer to str
+ * Return: int (length of str)
+ */
 int _strlen(char *s)
 {
 	if (!*s)
 		return (0);
 	return (1 + _strlen(s + 1));
 }
-
+/**
+ * _strcmp - function to compare to str
+ * used this function to compare user order
+ * if 'exit' break the loop
+ * @s1: pointer to str
+ * @s2: pointer to str
+ * Return: 1 if identicar
+ */
 int _strcmp(char *s1, char *s2)
 {
 	if (*s1 == '\0' && *s2 == '\0')
@@ -15,7 +26,12 @@ int _strcmp(char *s1, char *s2)
 		return (0);
 	return (_strcmp(s1 + 1, s2 + 1));
 }
-
+/**
+ * count_words - function to count how many word in str
+ * despite if there is many spaces - func helper to _argv
+ * @str: pointer to str
+ * Return: int (count of words)
+ */
 int count_words(char *str)
 {
 	int i, spc;
@@ -30,11 +46,16 @@ int count_words(char *str)
 		spc++;
 	return (spc);
 }
-
+/**
+ * _argv - func to make str array of pointer of str
+ * null terminated 'replica of strtok'
+ * @str: pointer to str
+ * Return: pointer of pointer of str
+ */
 char **_argv(char *str)
 {
 	char **new;
-	int words, i, j , count, count2;
+	int words, i, j, count, count2;
 
 	if (str == NULL || count_words(str) == 0 || _strlen(str) == 0)
 		return (NULL);
@@ -68,9 +89,12 @@ char **_argv(char *str)
 	new[i] = NULL;
 	return (new);
 }
-
-
-
+/**
+ * _strcat - function used to concatet to str
+ * @s1: first pointer to str
+ * @s2: seconed pointer to str
+ * Return: pointer to str
+ */
 char *_strcat(char *s1, char *s2)
 {
 	char *all;
