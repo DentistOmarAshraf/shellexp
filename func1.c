@@ -4,7 +4,7 @@
  * @s: pointer to str
  * Return: int (length of str)
  */
-int _strlen(char *s)
+int _strlen(const char *s)
 {
 	if (!*s)
 		return (0);

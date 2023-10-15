@@ -10,10 +10,13 @@
 #include <stdbool.h>
 
 int _strcmp(char *, char *);
-int _strlen(char *);
+int _strlen(const char *);
+char *_strdup(const char *);
 char **_argv(char *);
 int count_words(char *);
 char *_strcat(char *, char *);
+char *_getenv(const char *);
 void free_grid(char **);
 void free_ptr(char **);
+
 #endif
