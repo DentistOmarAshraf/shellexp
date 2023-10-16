@@ -41,6 +41,7 @@ char *_getenv(const char *name)
 		if (_strcmp(n, temp))
 		{
 			ret = _strdup(strtok(NULL," "));
+			free(n);
 			free(temp);
 			return (ret);
 		}

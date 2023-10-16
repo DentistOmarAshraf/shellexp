@@ -9,6 +9,19 @@
 #include <sys/wait.h>
 #include <stdbool.h>
 
+/**
+ * struct path - struct path
+ * @dir: pointer to str (directory)
+ * @next: pointer to next node
+ */
+
+typedef struct path
+{
+	char *dir;
+	struct path *next;
+} path_t;
+
+path_t *new_dir_list(const char *);
 int _strcmp(char *, char *);
 int _strlen(const char *);
 char *_strdup(const char *);
