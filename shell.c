@@ -4,13 +4,15 @@
  * Return: Alwyas 0
  */
 
-int main(void)
+int main(int ac, char **av, char **env)
 {
 	char *prom = "$ ", /* *dir,*/ *input = NULL;
 	char **argv;
 	size_t len = 0;
 	int id, status, len2/*, glchk*/, exchk;
 
+	(void)ac;
+	(void)av;
 	while (true)
 	{
 		write(STDOUT_FILENO, prom, _strlen(prom));
@@ -27,7 +29,7 @@ int main(void)
 		id = fork();
 		if (id == 0)
 		{
-			exchk = execve(argv[0], argv, NULL);
+			exchk = execve(argv[0], argv, env);
 			if (exchk == -1)
 				perror(argv[0]);
 			free_ptr(&input);
