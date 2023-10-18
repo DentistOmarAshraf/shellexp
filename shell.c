@@ -9,18 +9,14 @@
 
 int main(int ac, char **av, char **env)
 {
-	char *prom = "$ ", /* *dir,*/ *input = NULL;
+	char *prom = "$ ", *input = NULL;
 	size_t len = 0;
-	int id, status/*, glchk*/, exchk;
+	int id, status, exchk;
 
 	while (true)
 	{
 		chkatt(prom);
-		if (getline(&input, &len, stdin) == -1 || _strcmp(input, "exit\n"))
-		{
-			free_ptr(&input);
-			break;
-		}
+		getcmnd(&input, &len);
 		if (_strcmp(input, "\n"))
 			continue;
 		inpmod(&input);

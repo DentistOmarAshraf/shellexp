@@ -35,6 +35,7 @@ void free_all(char **, char **);
 
 /*HELPER FUNCTION TO SHELL*/
 void chkatt(char *);
+void getcmnd(char **, size_t *);
 void inpmod(char **);
 
 #endif

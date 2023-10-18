@@ -11,6 +11,21 @@ void chkatt(char *str)
 		write(STDOUT_FILENO, str, _strlen(str));
 }
 /**
+ * getcmnd - helper function to get user input
+ * and save it pointer
+ * @str: pointer of pointer to str
+ * @n: pointer to size_t
+ * Return: none
+ */
+void getcmnd(char **str, size_t *n)
+{
+	if (getline(str, n, stdin) == -1 || _strcmp(*str, "exit\n"))
+	{
+		free_ptr(str);
+		exit(0);
+	}
+}
+/**
  * inpmod - helper function change the last /n
  * @s: pointer of pointer
  * Return: none
