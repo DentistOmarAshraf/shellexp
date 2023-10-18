@@ -1,6 +1,9 @@
 #include "main.h"
 /**
  * main - Entry point (shell)
+ * @ac: number of argments
+ * @av: 2d array argments
+ * @env: environment
  * Return: Alwyas 0
  */
 
@@ -15,7 +18,8 @@ int main(int ac, char **av, char **env)
 	(void)av;
 	while (true)
 	{
-		write(STDOUT_FILENO, prom, _strlen(prom));
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, prom, _strlen(prom));
 		if (getline(&input, &len, stdin) == -1 || _strcmp(input, "exit\n"))
 		{
 			free_ptr(&input);

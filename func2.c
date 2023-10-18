@@ -1,4 +1,9 @@
 #include "main.h"
+/**
+ * free_grid - function to free tokens
+ * @argv: pointer of pointer
+ * Return: NONE
+ */
 
 void free_grid(char **argv)
 {

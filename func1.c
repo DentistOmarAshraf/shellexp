@@ -60,6 +60,7 @@ char **_argv(char *str)
 	if (str == NULL || count_words(str) == 0 || _strlen(str) == 0)
 		return (NULL);
 	words = count_words(str);
+	printf("%d\n", words);
 	new = malloc(sizeof(char *) * (words + 1));
 	if (new == NULL)
 		return (NULL);
