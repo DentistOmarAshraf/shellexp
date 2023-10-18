@@ -10,12 +10,9 @@
 int main(int ac, char **av, char **env)
 {
 	char *prom = "$ ", /* *dir,*/ *input = NULL;
-	char **argv;
 	size_t len = 0;
 	int id, status, len2/*, glchk*/, exchk;
 
-	(void)ac;
-	(void)av;
 	while (true)
 	{
 		if (isatty(STDIN_FILENO))
@@ -29,22 +26,23 @@ int main(int ac, char **av, char **env)
 			continue;
 		len2 = _strlen(input);
 		input[len2 - 1] = '\0';
-		argv = _argv(input);
+		if (ac < 2)
+			av = _argv(input);
 		id = fork();
 		if (id == 0)
 		{
-			exchk = execve(argv[0], argv, env);
+			exchk = execve(av[0], av, env);
 			if (exchk == -1)
-				perror(argv[0]);
+				perror(av[0]);
 			free_ptr(&input);
-			free_grid(argv);
+			free_grid(av);
 			return (0);
 		}
 		else
 		{
 			waitpid(id, &status, 0);
 			free_ptr(&input);
-			free_grid(argv);
+			free_grid(av);
 		}
 	}
 	return (0);
