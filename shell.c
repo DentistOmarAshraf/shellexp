@@ -25,9 +25,16 @@ int main(int ac, char **av, char **env)
 		if (_strcmp(input, "\n"))
 			continue;
 		len2 = _strlen(input);
-		input[len2 - 1] = '\0';
+		if (input[len2 - 1] == '\n')
+			input[len2 - 1] = '\0';
 		if (ac < 2)
+		{
 			av = _argv(input);
+			if (!av)
+				continue;
+		}
+		if (_strcmp(av[0], "exit"))
+			break;
 		id = fork();
 		if (id == 0)
 		{

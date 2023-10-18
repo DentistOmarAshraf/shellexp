@@ -42,7 +42,7 @@ int count_words(char *str)
 		if (i && str[i] == ' ' && str[i - 1] != ' ')
 			spc++;
 	}
-	if (str[i] == '\0' && str[i - 1] != ' ')
+	if (str[i] == '\0' && str[i - 1] != ' ' && _strlen(str) != 0)
 		spc++;
 	return (spc);
 }
