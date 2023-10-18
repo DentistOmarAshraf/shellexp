@@ -32,4 +32,8 @@ char *_getenv(const char *);
 void free_grid(char **);
 void free_ptr(char **);
 
+/*HELPER FUNCTION TO SHELL*/
+void chkatt(char *);
+void inpmod(char **);
+
 #endif

@@ -11,12 +11,11 @@ int main(int ac, char **av, char **env)
 {
 	char *prom = "$ ", /* *dir,*/ *input = NULL;
 	size_t len = 0;
-	int id, status, len2/*, glchk*/, exchk;
+	int id, status/*, glchk*/, exchk;
 
 	while (true)
 	{
-		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, prom, _strlen(prom));
+		chkatt(prom);
 		if (getline(&input, &len, stdin) == -1 || _strcmp(input, "exit\n"))
 		{
 			free_ptr(&input);
@@ -24,9 +23,7 @@ int main(int ac, char **av, char **env)
 		}
 		if (_strcmp(input, "\n"))
 			continue;
-		len2 = _strlen(input);
-		if (input[len2 - 1] == '\n')
-			input[len2 - 1] = '\0';
+		inpmod(&input);
 		if (ac < 2)
 		{
 			av = _argv(input);
@@ -49,8 +46,7 @@ int main(int ac, char **av, char **env)
 		{
 			waitpid(id, &status, 0);
 			free_ptr(&input);
-			free_grid(av);
-		}
+			free_grid(av);	}
 	}
 	return (0);
 }
