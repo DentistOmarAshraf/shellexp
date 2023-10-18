@@ -31,6 +31,7 @@ char *_strcat(char *, char *);
 char *_getenv(const char *);
 void free_grid(char **);
 void free_ptr(char **);
+void free_all(char **, char **);
 
 /*HELPER FUNCTION TO SHELL*/
 void chkatt(char *);

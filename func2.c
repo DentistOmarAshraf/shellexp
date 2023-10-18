@@ -26,3 +26,15 @@ void free_ptr(char **ptr)
 	free(*ptr);
 	*ptr = NULL;
 }
+/**
+ * free_all - function to free
+ * it use both previous function
+ * @ptr: pointer of pointer to str
+ * @argv: array of pointer to str
+ * Return: NONE
+ */
+void free_all(char **ptr, char **argv)
+{
+	free_ptr(ptr);
+	free_grid(argv);
+}

@@ -31,22 +31,22 @@ int main(int ac, char **av, char **env)
 				continue;
 		}
 		if (_strcmp(av[0], "exit"))
-			break;
+		{
+			free_all(&input, av);
+			break;	}
 		id = fork();
 		if (id == 0)
 		{
 			exchk = execve(av[0], av, env);
 			if (exchk == -1)
 				perror(av[0]);
-			free_ptr(&input);
-			free_grid(av);
+			free_all(&input, av);
 			return (0);
 		}
 		else
 		{
 			waitpid(id, &status, 0);
-			free_ptr(&input);
-			free_grid(av);	}
+			free_all(&input, av);	}
 	}
 	return (0);
 }
